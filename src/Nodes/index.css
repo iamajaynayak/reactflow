@@ -1,0 +1,10 @@
+.node-list{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: white;
+    margin: 5px 0;
+}
