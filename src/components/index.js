@@ -1,4 +1,6 @@
 import "./index.css"
 
-export { InputNode } from "./InputNode/InputNode"
-export { OutputNode } from "./OutputNode/OutputNode"
+
+export { CustomNode } from "./Nodes/CustomNode/CustomNode"
+export { CustomEdge } from "./Edges/CustomEdge/CustomEdge"
+export { Sidebar } from "./Sidebar/Sidebar"

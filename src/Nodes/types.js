@@ -1,1 +1,0 @@
-export const NodeTypes = ["default", "input", "output"]
