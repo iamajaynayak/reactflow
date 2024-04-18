@@ -6,7 +6,7 @@ export const Sidebar = () => {
         e.dataTransfer.setData("text/plain", node)
     }
     return (
-        <>            {
+        <div className="list-container">            {
             NodeTypes.map((node, index) => (
                 <div key={index} className={`node-list ${node} react-flow react-flow__node react-flow__node-turbo nopan`} onDragStart={e => onDragStart(e, node)} draggable >
                  <div className="wrapper ">
@@ -17,7 +17,7 @@ export const Sidebar = () => {
                 </div>
             ))
             }
-        </>
+        </div>
     )
 }
 

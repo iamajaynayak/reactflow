@@ -1,3 +1,16 @@
+.react-flow__node-default, .react-flow__node-input, .react-flow__node-output {
+  padding: unset;
+  border-radius: unset;
+  width: unset;
+  font-size: unset;
+  color: unset;
+  text-align: unset;
+  border-width: unset;
+  border-style: unset;
+  border-color: unset;
+  background-color: unset;
+}
+
 .react-flow {
   --bg-color: rgb(17, 17, 17);
   --text-color: rgb(243, 244, 246);
@@ -7,7 +20,7 @@
   color: var(--text-color);
 }
 
-.react-flow__node-turbo {
+.react-flow__node {
   border-radius: var(--node-border-radius);
   display: flex;
   height: 70px;
@@ -18,7 +31,7 @@
   box-shadow: var(--node-box-shadow);
 }
 
-.react-flow__node-turbo .wrapper {
+.react-flow__node .wrapper {
   overflow: hidden;
   display: flex;
   padding: 2px;
@@ -45,7 +58,7 @@
   border-radius: 100%;
 }
 
-.react-flow__node-turbo.selected .wrapper.gradient:before {
+.react-flow__node.selected .wrapper.gradient:before {
   content: '';
   background: conic-gradient(
     from -160deg at 50% 50%,
@@ -65,7 +78,7 @@
   }
 }
 
-.react-flow__node-turbo .inner {
+.react-flow__node .inner {
   background: var(--bg-color);
   padding: 16px 20px;
   border-radius: var(--node-border-radius);
@@ -76,26 +89,26 @@
   position: relative;
 }
 
-.react-flow__node-turbo .icon {
+.react-flow__node .icon {
   margin-right: 8px;
 }
 
-.react-flow__node-turbo .body {
+.react-flow__node .body {
   display: flex;
 }
 
-.react-flow__node-turbo .title {
+.react-flow__node .title {
   font-size: 16px;
   margin-bottom: 2px;
   line-height: 1;
 }
 
-.react-flow__node-turbo .subline {
+.react-flow__node .subline {
   font-size: 12px;
   color: #777;
 }
 
-.react-flow__node-turbo .cloud {
+.react-flow__node .cloud {
   border-radius: 100%;
   width: 30px;
   height: 30px;
@@ -111,7 +124,7 @@
   z-index: 1;
 }
 
-.react-flow__node-turbo .cloud div {
+.react-flow__node .cloud div {
   background-color: var(--bg-color);
   flex-grow: 1;
   border-radius: 100%;
@@ -174,3 +187,5 @@
 .react-flow__attribution a {
   color: #95679e;
 }
+
+

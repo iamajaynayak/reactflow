@@ -1,7 +1,9 @@
-import { useState, useCallback, useMemo } from "react"
-import ReactFlow, { MiniMap, ReactFlowProvider, Controls, Background, applyNodeChanges, addEdge, useNodesState, useEdgesState, MarkerType } from "reactflow"
+import { useCallback, useMemo } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { setNode, updateNodes, setEdge } from "./store/slices/flow.slice"
+import ReactFlow, { MiniMap, ReactFlowProvider, Controls, Background } from "reactflow"
 
-import { CustomNode, CustomEdge, Sidebar } from "./components"
+import { CustomNode, CustomEdge, Sidebar, Input, Output, Default } from "./components"
 
 import "./App.css"
 import 'reactflow/dist/style.css';
@@ -10,16 +12,18 @@ import 'reactflow/dist/style.css';
 
 function App() {
 
-  const [nodes, setNodes] = useNodesState([])
-  const [edges, setEdges] = useEdgesState([])
+  const nodes = useSelector(state => state.flow.nodes)
+  const edges = useSelector(state => state.flow.edges)
+  const dispatch = useDispatch()
 
-  // [TODO] need to pass input node data to output node
-  // const [input, setInput] = useState("")
-
+  const inputValue = useSelector(state => state.flow.input)
 
   // using custom node type
   const nodeTypes = useMemo(() => ({
-    turbo: CustomNode
+    turbo: CustomNode,
+    input: Input,
+    output: Output,
+    default: Default
   }), [])
 
 
@@ -34,37 +38,30 @@ function App() {
     markerEnd: "edge-circle",
   };
 
-  const onChange = (e) => {
-    // setInput(e.target.value)
-  }
 
+  // add a new node on drop
   const getId = () => `${Math.floor(Math.random() * 10000)}`
   const onDrop = e => {
     const type = e.dataTransfer.getData("text/plain")
     const label = `${type} Node`
 
     const newNode = {
-      id: getId(), type, position: { x: e.pageX, y: e.pageY }, data: { label , title : "Turbo"}
+      id: getId(), type , position: { x: e.clientX, y: e.clientY }, data: { label , title : label }
     }
 
-    if (type === "input") {
-      newNode.data.onChange = onChange
-    }
-
-    setNodes(prev => [...prev, newNode])
+    dispatch(setNode(newNode))
   }
 
   const onNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [setNodes]
+    (changes) => dispatch(updateNodes(changes)),
+    [dispatch]
   );
 
   const onNodeConnect = useCallback(
     (params) => {
-      params.type = "turbo"
-      return setEdges((eds) => addEdge(params, eds))
+      dispatch(setEdge(params))
     },
-    [],
+    [dispatch],
   );
 
 

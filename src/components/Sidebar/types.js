@@ -1,1 +1,1 @@
-export const NodeTypes = ["turbo"]
+export const NodeTypes = ["input","output","default","turbo"]
